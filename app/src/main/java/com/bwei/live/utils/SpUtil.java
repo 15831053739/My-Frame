@@ -23,7 +23,7 @@ public class SpUtil {
     //提供静态方法
     public static SpUtil instance(Context context) {
         if (mSpUtil == null) {
-            synchronized (context) {
+            synchronized (SpUtil.class) {
                 if (mSpUtil == null) {
                     mSpUtil = new SpUtil(context);
                 }
