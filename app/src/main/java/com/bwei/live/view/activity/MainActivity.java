@@ -25,6 +25,8 @@ import android.util.Log;
 import com.bwei.live.R;
 import com.bwei.live.model.Bean.TestBean;
 import com.bwei.live.model.MyObserver;
+import com.bwei.live.utils.NetUtils;
+import com.bwei.live.utils.Tutils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -40,12 +42,17 @@ public class MainActivity extends BaseActivity {
         Map<String,String> map = new HashMap<>();
         map.put("type","top");
         map.put("key","684c4adb4039d6a4e0ecedb81bbc3f7b");
-        mHttpUtil.loadDateNet(mHttpUtil.mApiService.requestBean(map), new MyObserver<TestBean>() {
-            @Override
-            protected void onNextTo(TestBean testBean) {
-                Log.d("tag", "onNextTo: "+testBean.getStat());
-            }
-        });
+        if(mNetUtils.isConnected()){
+            mHttpUtil.loadDateNet(mHttpUtil.mApiService.requestBean(map), new MyObserver<TestBean>() {
+                @Override
+                protected void onNextTo(TestBean testBean) {
+                    Log.d("tag", "onNextTo: "+testBean.getStat());
+                }
+            });
+        }else{
+            Tutils.showShort(this,"网络链接异常");
+        }
+
     }
 
 

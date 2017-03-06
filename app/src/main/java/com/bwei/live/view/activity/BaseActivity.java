@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import com.bwei.live.application.MyApplication;
 import com.bwei.live.utils.DaiLogUtil;
 import com.bwei.live.utils.HttpUtil;
+import com.bwei.live.utils.NetUtils;
 import com.bwei.live.utils.SpUtil;
 
 /**
@@ -20,6 +21,7 @@ public abstract class BaseActivity  extends FragmentActivity{
     protected  Context mContext;
     protected DaiLogUtil mDialogUtil;
     protected SpUtil mSp;
+    protected NetUtils mNetUtils;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +35,13 @@ public abstract class BaseActivity  extends FragmentActivity{
             mHttpUtil=application.getmHttpUtil();
         }
         if(mDialogUtil == null){
-            mDialogUtil = DaiLogUtil.getInstance(mContext,false);
+            mDialogUtil = new DaiLogUtil(mContext,false);
         }
         if(mSp == null){
             mSp=SpUtil.instance(mContext);
+        }
+        if(mNetUtils == null){
+            mNetUtils = NetUtils.instance(mContext);
         }
         //初始化视图
         initView();
@@ -44,7 +49,6 @@ public abstract class BaseActivity  extends FragmentActivity{
         initDate();
         
     }
-
     protected abstract void initDate();
 
     protected abstract void initView();

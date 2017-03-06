@@ -17,7 +17,7 @@ public class DaiLogUtil {
     public static DaiLogUtil mDialogUtil;
     private Dialog mDialog;
     private boolean flag;
-    private DaiLogUtil(Context mContext,boolean flag){
+    public  DaiLogUtil(Context mContext,boolean flag){
         this.mContext = mContext;
         this.flag = flag;
         initDailog();
@@ -31,22 +31,12 @@ public class DaiLogUtil {
         // dialog弹出后会点击屏幕，dialog不消失；点击物理返回键dialog消失
         mDialog.setCanceledOnTouchOutside(true);
         //对话框是否可取消
-        mDialog.setCancelable(flag);
+        mDialog.setCancelable(true);
         mDialog.setContentView(view);
         //设置Dialog位置
         Window window = mDialog.getWindow();
         window.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL);
 
-    }
-    public static DaiLogUtil getInstance(Context mContext,boolean flag) {
-        if (mDialogUtil == null) {
-            synchronized (DaiLogUtil.class) {
-                if (mDialogUtil == null) {
-                    mDialogUtil = new DaiLogUtil(mContext,flag);
-                }
-            }
-        }
-        return mDialogUtil;
     }
     //dialog show方法
     public void mDialogShow(){
