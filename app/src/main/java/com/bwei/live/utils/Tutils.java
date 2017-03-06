@@ -8,7 +8,9 @@ import android.widget.Toast;
  */
 
 public class Tutils {
+    //短时间的吐司
     public static void showShort(Context context,String str){
         Toast.makeText(context,str,Toast.LENGTH_SHORT).show();
     }
+
 }

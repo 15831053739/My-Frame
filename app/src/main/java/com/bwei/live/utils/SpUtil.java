@@ -15,9 +15,7 @@ public class SpUtil {
 
     //私有化构造方法
     private SpUtil(Context context) {
-        if (mSp == null) {
             mSp = context.getSharedPreferences("property", Activity.MODE_PRIVATE);
-        }
     }
 
     //提供静态方法
